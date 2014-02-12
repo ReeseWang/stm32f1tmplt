@@ -12,14 +12,14 @@
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STM32F103RB</Device>
+          <Device>STM32F100RB</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <Cpu>IROM(0x08000000,0x20000) IRAM(0x20000000,0x5000) CPUTYPE("Cortex-M3") CLOCK(72000000) ELITTLE</Cpu>
+          <Cpu>IROM(0x08000000,0x20000) IRAM(0x20000000,0x2000) CPUTYPE("Cortex-M3") CLOCK(24000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128 -FS08000000 -FL020000 -FP0($$Device:STM32F103RB$Flash\STM32F10x_128.FLM))</FlashDriverDll>
-          <DeviceId>4231</DeviceId>
-          <RegisterFile>$$Device:STM32F103RB$Device\Include\stm32f10x.h</RegisterFile>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128 -FS08000000 -FL020000 -FP0($$Device:STM32F100RB$Flash\STM32F10x_128.FLM))</FlashDriverDll>
+          <DeviceId>5086</DeviceId>
+          <RegisterFile>$$Device:STM32F100RB$Device\Include\stm32f10x.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -29,7 +29,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:STM32F103RB$SVD\STM32F103xx.svd</SFDFile>
+          <SFDFile>$$Device:STM32F100RB$SVD\STM32F100xx.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -218,7 +218,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <RoSelD>3</RoSelD>
@@ -274,7 +274,7 @@
               <IRAM>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x5000</Size>
+                <Size>0x2000</Size>
               </IRAM>
               <IROM>
                 <Type>1</Type>
@@ -329,7 +329,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x5000</Size>
+                <Size>0x2000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -355,9 +355,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER,USE_FULL_ASSERT,ARM_MATH_CM3</Define>
+              <Define>STM32F10X_MD_VL,USE_STDPERIPH_DRIVER,USE_FULL_ASSERT,ARM_MATH_CM3</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\CMSIS\inc;..\lib\STM32F10x_StdPeriph_Driver\inc;..\user</IncludePath>
+              <IncludePath>..\lib\CMSIS\inc;..\lib\STM32F10x_StdPeriph_Driver\inc;..\user;..\mpu6000</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -532,13 +532,6 @@
         </Group>
         <Group>
           <GroupName>startup</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32f10x_md.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\lib\CMSIS\startup\arm\startup_stm32f10x_md.s</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>system</GroupName>
@@ -727,6 +720,16 @@
               <FileName>arm_sub_q31.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lib\CMSIS\DSP_Lib\Source\BasicMathFunctions\arm_sub_q31.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>mpu6000</GroupName>
+          <Files>
+            <File>
+              <FileName>MPU6000.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\mpu6000\MPU6000.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1258,13 +1261,6 @@
         </Group>
         <Group>
           <GroupName>startup</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32f10x_md.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\lib\CMSIS\startup\arm\startup_stm32f10x_md.s</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>system</GroupName>
@@ -1453,6 +1449,16 @@
               <FileName>arm_sub_q31.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lib\CMSIS\DSP_Lib\Source\BasicMathFunctions\arm_sub_q31.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>mpu6000</GroupName>
+          <Files>
+            <File>
+              <FileName>MPU6000.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\mpu6000\MPU6000.c</FilePath>
             </File>
           </Files>
         </Group>
