@@ -636,6 +636,9 @@ bool mpu6000TestConnection(mpu6000Object_t *pD);
 bool mpu6000EvaluateSelfTest(float low, float high, float value, char* string);
 bool mpu6000SelfTest(mpu6000Object_t *pD);
 
+void mpu6000SetSpiFreqForConfig(mpu6000Object_t *pD);
+void mpu6000SetSpiFreqForRunning(mpu6000Object_t *pD);
+
 // SMPLRT_DIV register
 uint8_t mpu6000GetRate(mpu6000Object_t *pD);
 void mpu6000SetRate(mpu6000Object_t *pD, uint8_t rate);

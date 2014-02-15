@@ -18,8 +18,8 @@ typedef struct
 	uint16_t	spiMisoPin;
 	uint16_t	spiMosiPin;
 
-	uint16_t	spiBrpDuringConfig;
-	uint16_t	spiBrpRunning;
+	uint16_t	spiBaudRatePrescaler1M;
+	uint16_t	spiBaudRatePrescaler20M;
 	uint32_t	extiLine;
 	uint8_t	        irqGpioPortSource;
 	uint8_t	        irqGpioPinSource;
@@ -346,7 +346,7 @@ void mpu6000SpiInit(mpu6000Hal_t *hal)
 	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
 	SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
 	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
-	SPI_InitStructure.SPI_BaudRatePrescaler = hal->spiBrpDuringConfig;	//Parameter check will be performed in SPI_Init()
+	SPI_InitStructure.SPI_BaudRatePrescaler = hal->spiBaudRatePrescaler1M;	//Parameter check will be performed in SPI_Init()
 	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
 	SPI_InitStructure.SPI_CRCPolynomial = 7;
 	SPI_Init(hal->spi, &SPI_InitStructure);
@@ -355,26 +355,34 @@ void mpu6000SpiInit(mpu6000Hal_t *hal)
 	SPI_Cmd(hal->spi, ENABLE);
 }
 
-void mpu6000SetSpiFreqForRunning(mpu6000Hal_t *hal)
+/*
+ *  SPI Operating Frequency = 20MHz +/- 10%
+ *  Sensor and Interrupt Registers Read Only
+ */
+void mpu6000SetSpiFreq20M(mpu6000Hal_t *hal)
 {
 	while(hal->spi->SR & SPI_I2S_FLAG_BSY);
 
 	SPI_Cmd(hal->spi, DISABLE);
 	
 	hal->spi->CR1 &= 0xFFC7;
-	hal->spi->CR1 |= hal->spiBrpRunning;
+	hal->spi->CR1 |= hal->spiBaudRatePrescaler20M;
 
 	SPI_Cmd(hal->spi, ENABLE);
 }
 
-void mpu6000SetSpiFreqForConfig(mpu6000Hal_t *hal)
+/*
+ *  SPI Operating Frequency = 1MHz +/- 10%:
+ *  All Registers Read/Write
+ */
+void mpu6000SetSpiFreq1M(mpu6000Hal_t *hal)
 {
 	while(hal->spi->SR & SPI_I2S_FLAG_BSY);
 
 	SPI_Cmd(hal->spi, DISABLE);
 	
 	hal->spi->CR1 &= 0xFFC7;
-	hal->spi->CR1 |= hal->spiBrpDuringConfig;
+	hal->spi->CR1 |= hal->spiBaudRatePrescaler1M;
 
 	SPI_Cmd(hal->spi, ENABLE);
 }

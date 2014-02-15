@@ -57,6 +57,8 @@ void mpu6000Init(mpu6000Object_t *pD)
 	mpu6000WriteByte(&(pD->hal), MPU6000_RA_USER_CTRL, *buffer);
 
 	pD->isInit = true;
+
+	mpu6000SetSpiFreqForRunning(pD);
 }
 
 bool mpu6000Test(mpu6000Object_t *pD)
@@ -183,6 +185,24 @@ bool mpu6000EvaluateSelfTest(float low, float high, float value, char* string)
 		return false;
 	}
 	return true;
+}
+
+/*
+ *  SPI Operating Frequency = 1MHz +/- 10%:
+ *  All Registers Read/Write
+ */
+void mpu6000SetSpiFreqForConfig(mpu6000Object_t *pD)
+{
+	mpu6000SetSpiFreq1M(&(pD->hal));
+}
+
+/*
+ *  SPI Operating Frequency = 20MHz +/- 10%
+ *  Sensor and Interrupt Registers Read Only
+ */
+void mpu6000SetSpiFreqForRunning(mpu6000Object_t *pD)
+{
+	mpu6000SetSpiFreq20M(&(pD->hal));
 }
 
 // AUX_VDDIO register (InvenSense demo code calls this RA_*G_OFFS_TC)
