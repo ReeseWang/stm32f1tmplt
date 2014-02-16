@@ -552,7 +552,7 @@ typedef enum
 typedef enum 
 {
 	fsyncIntEnable = 0x04,
-	fxyncIntDisable = 0x00
+	fsyncIntDisable = 0x00
 } mpu6000FsyncInt;
 
 typedef enum 
@@ -638,6 +638,7 @@ bool mpu6000SelfTest(mpu6000Object_t *pD);
 
 void mpu6000SetSpiFreqForConfig(mpu6000Object_t *pD);
 void mpu6000SetSpiFreqForRunning(mpu6000Object_t *pD);
+bool mpu6000IsIntAsserted(mpu6000Object_t *pD);
 
 // SMPLRT_DIV register
 uint8_t mpu6000GetRate(mpu6000Object_t *pD);
@@ -825,6 +826,9 @@ void mpu6000GetRotation(mpu6000Object_t *pD, int16_t* x, int16_t* y, int16_t* z)
 int16_t mpu6000GetRotationX(mpu6000Object_t *pD);
 int16_t mpu6000GetRotationY(mpu6000Object_t *pD);
 int16_t mpu6000GetRotationZ(mpu6000Object_t *pD);
+
+// *OUT* registers
+void mpu6000GetSensorRaw(mpu6000Object_t *pD, int16_t *data);
 
 // EXT_SENS_DATA_* registers
 uint8_t mpu6000GetExternalSensorByte(mpu6000Object_t *pD, int position);

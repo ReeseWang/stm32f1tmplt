@@ -532,6 +532,13 @@
         </Group>
         <Group>
           <GroupName>startup</GroupName>
+          <Files>
+            <File>
+              <FileName>startup_stm32f10x_md.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\lib\CMSIS\startup\arm\startup_stm32f10x_md.s</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>system</GroupName>
@@ -727,9 +734,14 @@
           <GroupName>mpu6000</GroupName>
           <Files>
             <File>
-              <FileName>MPU6000.c</FileName>
+              <FileName>mpu6000hal.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\mpu6000\MPU6000.c</FilePath>
+              <FilePath>..\mpu6000\mpu6000hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu6000.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\mpu6000\mpu6000.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1261,6 +1273,13 @@
         </Group>
         <Group>
           <GroupName>startup</GroupName>
+          <Files>
+            <File>
+              <FileName>startup_stm32f10x_md.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\lib\CMSIS\startup\arm\startup_stm32f10x_md.s</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>system</GroupName>
@@ -1456,9 +1475,14 @@
           <GroupName>mpu6000</GroupName>
           <Files>
             <File>
-              <FileName>MPU6000.c</FileName>
+              <FileName>mpu6000hal.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\mpu6000\MPU6000.c</FilePath>
+              <FilePath>..\mpu6000\mpu6000hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu6000.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\mpu6000\mpu6000.c</FilePath>
             </File>
           </Files>
         </Group>

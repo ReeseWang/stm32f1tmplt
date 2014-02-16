@@ -1,7 +1,7 @@
 /*
  *  Less dependencies is good for code reuse
  */
-#include "MPU6000.h"
+#include "mpu6000.h"
 #include <stdio.h>
 
 static uint8_t buffer[14];
@@ -205,29 +205,38 @@ void mpu6000SetSpiFreqForRunning(mpu6000Object_t *pD)
 	mpu6000SetSpiFreq20M(&(pD->hal));
 }
 
-// AUX_VDDIO register (InvenSense demo code calls this RA_*G_OFFS_TC)
+/*
+ *  Query if INT pin on device is asserted
+ */
+bool mpu6000IsIntAsserted(mpu6000Object_t *pD)
+{
+	return (bool)(pD->interruptConfig.intLevel) ^ (bool)(mpu6000GetIntPinStatus(&(pD->hal)));	/* true when active low */
+			/* true when level high */
+}
 
-/** Get the auxiliary I2C supply voltage level.
- * When set to 1, the auxiliary I2C bus high logic level is VDD. When cleared to
- * 0, the auxiliary I2C bus high logic level is VLOGIC. This does not apply to
- * the MPU-6000, which does not have a VLOGIC pin.
- * @return I2C supply voltage level (0=VLOGIC, 1=VDD)
- */
-uint8_t mpu6000GetAuxVDDIOLevel(mpu6000Object_t *pD)
-{
-	mpu6000ReadBit(&(pD->hal), MPU6000_RA_YG_OFFS_TC, MPU6000_TC_PWR_MODE_BIT, buffer);
-	return buffer[0];
-}
-/** Set the auxiliary I2C supply voltage level.
- * When set to 1, the auxiliary I2C bus high logic level is VDD. When cleared to
- * 0, the auxiliary I2C bus high logic level is VLOGIC. This does not apply to
- * the MPU-6000, which does not have a VLOGIC pin.
- * @param level I2C supply voltage level (0=VLOGIC, 1=VDD)
- */
-void mpu6000SetAuxVDDIOLevel(mpu6000Object_t *pD, uint8_t level)
-{
-	mpu6000WriteBit(&(pD->hal), MPU6000_RA_YG_OFFS_TC, MPU6000_TC_PWR_MODE_BIT, level);
-}
+// // AUX_VDDIO register (InvenSense demo code calls this RA_*G_OFFS_TC)
+//
+// /** Get the auxiliary I2C supply voltage level.
+//  * When set to 1, the auxiliary I2C bus high logic level is VDD. When cleared to
+//  * 0, the auxiliary I2C bus high logic level is VLOGIC. This does not apply to
+//  * the MPU-6000, which does not have a VLOGIC pin.
+//  * @return I2C supply voltage level (0=VLOGIC, 1=VDD)
+//  */
+// uint8_t mpu6000GetAuxVDDIOLevel(mpu6000Object_t *pD)
+// {
+//         mpu6000ReadBit(&(pD->hal), MPU6000_RA_YG_OFFS_TC, MPU6000_TC_PWR_MODE_BIT, buffer);
+//         return buffer[0];
+// }
+// /** Set the auxiliary I2C supply voltage level.
+//  * When set to 1, the auxiliary I2C bus high logic level is VDD. When cleared to
+//  * 0, the auxiliary I2C bus high logic level is VLOGIC. This does not apply to
+//  * the MPU-6000, which does not have a VLOGIC pin.
+//  * @param level I2C supply voltage level (0=VLOGIC, 1=VDD)
+//  */
+// void mpu6000SetAuxVDDIOLevel(mpu6000Object_t *pD, uint8_t level)
+// {
+//         mpu6000WriteBit(&(pD->hal), MPU6000_RA_YG_OFFS_TC, MPU6000_TC_PWR_MODE_BIT, level);
+// }
 
 // SMPLRT_DIV register
 
@@ -2285,6 +2294,15 @@ int16_t mpu6000GetRotationZ(mpu6000Object_t *pD)
 {
 	mpu6000Read(&(pD->hal), MPU6000_RA_GYRO_ZOUT_H, 2, buffer);
 	return (((int16_t) buffer[0]) << 8) | buffer[1];
+}
+
+// *OUT* registers
+void mpu6000GetSensorRaw(mpu6000Object_t *pD, int16_t *data)
+{
+	static uint8_t n;
+	mpu6000Read(&(pD->hal), MPU6000_RA_ACCEL_XOUT_H, 14, buffer);
+	for(n=0; n<7; n++)
+		data[n] = (((int16_t)buffer[2*n]) << 8) | buffer[2*n + 1];
 }
 
 // EXT_SENS_DATA_* registers
