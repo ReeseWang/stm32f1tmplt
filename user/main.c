@@ -28,9 +28,9 @@ void hw_config(void)
 	mpu6000.hal.intGpioPort = GPIOA;
 	mpu6000.hal.intGpioPin = GPIO_Pin_3;
 
-	mpu6000.hal.csGpioClk = RCC_APB2Periph_GPIOB;
-	mpu6000.hal.csGpioPort = GPIOB;
-	mpu6000.hal.csGpioPin = GPIO_Pin_1;
+	mpu6000.hal.csGpioClk = RCC_APB2Periph_GPIOA;
+	mpu6000.hal.csGpioPort = GPIOA;
+	mpu6000.hal.csGpioPin = GPIO_Pin_4;
 
 	mpu6000.basicConfig.accFullScale = accFullScale4;
 	mpu6000.basicConfig.gyrFullScale = gyrFullScale500;

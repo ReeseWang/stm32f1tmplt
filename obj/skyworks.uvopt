@@ -106,7 +106,7 @@
         <tRtrace>1</tRtrace>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <nTsel>6</nTsel>
+        <nTsel>11</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -117,9 +117,29 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
+        <pMon>STLink\ST-LINKIII-KEIL_SWO.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>DLGTARM</Key>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>ARMDBGFLAGS</Key>
+          <Name></Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name>(105=-1,-1,-1,-1,0)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>ST-LINKIII-KEIL_SWO</Key>
+          <Name>-U-O206 -O206 -S3 -C0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F10x_128.FLM -FS08000000 -FL020000 -FP0($$Device:STM32F100RB$Flash\STM32F10x_128.FLM)</Name>
+        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
@@ -138,12 +158,12 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>0</aLwin>
+        <aLwin>1</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>0</viewmode>
+        <viewmode>1</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -319,10 +339,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>31</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>53</TopLine>
-      <CurrentLine>73</CurrentLine>
+      <TopLine>44</TopLine>
+      <CurrentLine>24</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\user\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -737,11 +757,11 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>140</TopLine>
+      <CurrentLine>149</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\CMSIS\startup\arm\startup_stm32f10x_md.s</PathWithFileName>
-      <FilenameWithoutPath>startup_stm32f10x_md.s</FilenameWithoutPath>
+      <PathWithFileName>..\lib\CMSIS\startup\arm\startup_stm32f10x_md_vl.s</PathWithFileName>
+      <FilenameWithoutPath>startup_stm32f10x_md_vl.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -761,7 +781,7 @@
       <Focus>0</Focus>
       <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>3</TopLine>
+      <TopLine>6</TopLine>
       <CurrentLine>7</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\lib\CMSIS\src\system_stm32f10x.c</PathWithFileName>
@@ -1353,8 +1373,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>363</TopLine>
+      <CurrentLine>390</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\mpu6000\mpu6000hal.c</PathWithFileName>
       <FilenameWithoutPath>mpu6000hal.c</FilenameWithoutPath>
@@ -1367,10 +1387,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>12</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>121</TopLine>
-      <CurrentLine>134</CurrentLine>
+      <TopLine>50</TopLine>
+      <CurrentLine>62</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\mpu6000\mpu6000.c</PathWithFileName>
       <FilenameWithoutPath>mpu6000.c</FilenameWithoutPath>
