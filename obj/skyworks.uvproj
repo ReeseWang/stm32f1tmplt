@@ -734,11 +734,6 @@
           <GroupName>mpu6000</GroupName>
           <Files>
             <File>
-              <FileName>mpu6000hal.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\mpu6000\mpu6000hal.c</FilePath>
-            </File>
-            <File>
               <FileName>mpu6000.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\mpu6000\mpu6000.c</FilePath>
@@ -1474,11 +1469,6 @@
         <Group>
           <GroupName>mpu6000</GroupName>
           <Files>
-            <File>
-              <FileName>mpu6000hal.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\mpu6000\mpu6000hal.c</FilePath>
-            </File>
             <File>
               <FileName>mpu6000.c</FileName>
               <FileType>1</FileType>
